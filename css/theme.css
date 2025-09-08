@@ -1,0 +1,101 @@
+/*** FONTS ***/
+h2 {
+	font-size: 24px;
+    line-height: 1.35;
+	margin-bottom: 25px;
+}
+
+p {
+	font-family: 'Roboto', Arial, sans-serif;
+	font-size: 16px;
+    line-height: 1.55;
+    font-weight: 300;
+    color: #000;
+	margin-bottom: 25px;
+}
+
+.t004 p {
+	font-size: 20px;
+    line-height: 1.55;
+	font-family: 'Roboto',Arial,sans-serif;
+    font-weight: 300;
+    color: #000;
+	margin-bottom: 25px;
+}
+/*** END FONTS ***/
+
+
+
+
+.wp-block-image {
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 100px;
+}
+
+.wp-block-image img {
+	max-width: 100%;
+	height: auto;
+}
+
+#allrecords .wp-block-buttons {
+text-align: center;
+}
+
+#allrecords .wp-block-button {
+    color: #000000;
+	border: 3px solid #000000;
+	font-family: 'Roboto',Arial,sans-serif;
+    text-align: center;
+    line-height: 60px;
+    font-size: 16px;
+    padding-left: 60px;
+    padding-right: 60px;
+    -webkit-appearance: none;
+    font-weight: 700;
+    background: none;
+    cursor: pointer;
+    box-sizing: content-box;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	display: inline-block;
+    height: 60px;
+    font-size: 16px;
+    padding-left: 60px;
+    padding-right: 60px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+
+    background-image: none;
+    cursor: pointer;
+
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -moz-box-sizing: border-box;
+}
+
+a.wp-block-button__link.wp-element-button {
+	color: #000000!important;
+}
+
+.wp-block-columns {
+  display: flex;
+}
+
+.wp-block-column {
+  flex: 1;
+}
+
+/* Add vertical breathing room to the full row of columns. */
+.wp-block-columns {
+  margin: 10px 0;
+}
+
+/* Add horiztonal breathing room between individual columns. */
+.wp-block-column {
+  margin: 0 10px;
+}
