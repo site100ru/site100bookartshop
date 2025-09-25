@@ -403,10 +403,81 @@
 <div id="rec97341897" class="r t-rec" style=" " data-animationappear="off" data-record-type="706" >
 	<!--tcart-->
 	<script>
-		$(document).ready(function() {
-			tcart__init('97341897', '');	/* hack for Android */ var ua = navigator.userAgent.toLowerCase(); var isAndroid = (ua.indexOf("android") > -1); if(isAndroid && !$('.t-body').hasClass('t-body_scrollable-hack-for-android')) { $('.t-body').addClass('t-body_scrollable-hack-for-android'); $('head').append("<style>@media screen and (max-width: 560px) {\n.t-body_scrollable-hack-for-android {\noverflow: visible !important;\n}\n}\n</style>"); console.log('Android css hack was inited'); } /* fix Instagram iPhone keyboard bug */ if(ua.indexOf("instagram") !== -1 && ua.indexOf("iphone") !== -1) { $(".t-body").css("position", "relative"); } var cartWindow = $("#rec97341897 .t706__cartwin"); var curMode = $(".t-records").attr("data-tilda-mode"); if (cartWindow.length && curMode != "edit" && curMode != "preview") { cartWindow.bind('scroll', t_throttle(function() { if(window.lazy == "y") { t_lazyload_update(); } }, 500)) }
-		});
-	</script>
+    // исходный код. Он показывает корзину и обрабатывает ее. Ранее js перехватывал событие и отправлял данные на тильду.
+    $(document).ready(function(){	
+        tcart__init('97341897', '');	
+        
+        /* hack for Android */ 
+        var ua = navigator.userAgent.toLowerCase(); 
+        var isAndroid = (ua.indexOf("android") > -1); 
+        if(isAndroid && !$('.t-body').hasClass('t-body_scrollable-hack-for-android')) { 
+            $('.t-body').addClass('t-body_scrollable-hack-for-android'); 
+            $('head').append("<style>@media screen and (max-width: 560px) {\n.t-body_scrollable-hack-for-android {\noverflow: visible !important;\n}\n}\n</style>"); 
+            console.log('Android css hack was inited'); 
+        } 
+        
+        /* fix Instagram iPhone keyboard bug */ 
+        if(ua.indexOf("instagram") !== -1 && ua.indexOf("iphone") !== -1) { 
+            $(".t-body").css("position", "relative"); 
+        } 
+        
+        var cartWindow = $("#rec97341897 .t706__cartwin"); 
+        var curMode = $(".t-records").attr("data-tilda-mode"); 
+        if (cartWindow.length && curMode != "edit" && curMode != "preview") { 
+            cartWindow.bind('scroll', t_throttle(function() { 
+                if(window.lazy == "y") { 
+                    t_lazyload_update(); 
+                } 
+            }, 500)) 
+        }
+        
+        // НАШЕ ДОПОЛНЕНИЕ - перехватываем отправку формы
+        $('#form97341897').removeAttr('data-formcart'); // Убираем флаг Tilda
+        
+        $('#form97341897').on('submit', function(e) {
+            e.preventDefault();
+            
+            var formData = $(this).serializeArray();
+            
+            // Добавляем данные корзины из объекта Tilda
+            if (window.tcart && window.tcart.products && window.tcart.products.length > 0) {
+                formData.push({name: 'Cart-Total', value: window.tcart.amount});
+                formData.push({name: 'Cart-Quantity', value: window.tcart.total});
+                
+                var cartItems = '';
+                $.each(window.tcart.products, function(i, product) {
+                    if (product && !product.deleted) {
+                        cartItems += product.name + ' x' + product.quantity + ' = ' + product.amount + ' ' + window.tcart.currency + '\n';
+                    }
+                });
+                formData.push({name: 'Cart-Items', value: cartItems});
+            }
+            
+            $.ajax({
+                url: '<?php echo get_template_directory_uri(); ?>/mail/callback-mail.php',
+                type: 'POST',
+                data: $.param(formData),
+                success: function(response) {
+                    $('.js-successbox').html('<p>Спасибо за заказ! Мы свяжемся с вами в ближайшее время.</p>').show();
+                    $('#form97341897')[0].reset();
+                    
+                    // Очищаем корзину
+                    window.tcart.products = [];
+                    localStorage.removeItem('tcart');
+                    tcart__loadLocalObj();
+                    tcart__reDrawCartIcon();
+                    
+                    setTimeout(function() {
+                        tcart__closeCart();
+                    }, 2000);
+                },
+                error: function() {
+                    alert('Ошибка отправки. Попробуйте еще раз.');
+                }
+            });
+        });
+    });
+    </script>
 	<div class="t706" data-opencart-onorder="yes" data-project-currency="₽" data-project-currency-side="r" data-project-currency-sep="," data-payment-system="robokassa" data-cart-ver="134">
 		<div class="t706__carticon" style="">
 			<div class="t706__carticon-text t-name t-name_xs">Click to order</div>

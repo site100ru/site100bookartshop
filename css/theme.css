@@ -99,3 +99,7 @@ a.wp-block-button__link.wp-element-button {
 .wp-block-column {
   margin: 0 10px;
 }
+
+.t-form__errorbox-middle {
+    display: none;
+}

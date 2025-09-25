@@ -13,7 +13,7 @@ if ($_POST) {
     $cart_quantity = isset($_POST['Cart-Quantity']) ? $_POST['Cart-Quantity'] : '';
     $cart_items = isset($_POST['Cart-Items']) ? $_POST['Cart-Items'] : '';
     
-    $subject = '=?utf-8?B?' . base64_encode("Заказ с сайта гарантшкаф.рф") . '?=';
+    $subject = '=?utf-8?B?' . base64_encode("Заказ с сайта bookartshop.ru") . '?=';
 
     $message = "
         Клиент: " . $name . "\n
