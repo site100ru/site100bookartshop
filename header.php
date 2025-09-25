@@ -39,8 +39,8 @@
 		<script src="<?php echo get_template_directory_uri(); ?>/js/tilda-cart-1.0.min.js" charset="utf-8"></script>
 		<script src="<?php echo get_template_directory_uri(); ?>/js/tilda-menusub-1.0.min.js" charset="utf-8"></script>
 
-        <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.touchswipe.min" charset="utf-8"></script>
-        <script src="<?php echo get_template_directory_uri(); ?>/js/masonry-imagesloaded.min" charset="utf-8"></script>
+        <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.touchswipe.min"></script>
+        <script src="<?php echo get_template_directory_uri(); ?>/js/masonry-imagesloaded.min"></script>
 		<!-- Facebook Pixel Code -->
 		<script>
 		  !function(f,b,e,v,n,t,s)
