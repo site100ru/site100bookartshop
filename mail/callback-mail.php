@@ -24,7 +24,7 @@ if ($_POST) {
         Сумма заказа: " . $cart_total . "\n
         Товары:\n" . $cart_items;
 
-    mail("vasilyev-r@mail.ru, sidorov-vv3@mail.ru", $subject, $message);
+    mail("vasilyev-r@mail.ru, book_ted@mail.ru", $subject, $message);
 
     $_SESSION['win'] = 1;
     $_SESSION['recaptcha'] = '<p class="text-light">Спасибо, что Вы обратились именно к нам. Мы свяжемся с Вами в ближайшее время.</p>';
